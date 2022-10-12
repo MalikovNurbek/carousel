@@ -1,6 +1,5 @@
-import { MinusOutlined, PlusOutlined } from "@ant-design/icons"
-import { Button, Progress } from "antd"
-import React, { useState } from "react"
+import {Progress } from "antd"
+import React from "react"
 
 const Slider = ({ percent, setPercent }) => {
 
