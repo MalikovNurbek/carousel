@@ -1,13 +1,13 @@
-import { useRef, useState } from 'react'
-import { Avatar, Button, Carousel, Progress } from 'antd'
-import ButtonGroup from 'antd/lib/button/button-group'
+import { useRef, useState } from "react";
+import { Avatar, Button, Carousel, Progress } from "antd";
+import ButtonGroup from "antd/lib/button/button-group";
 import {
   LeftOutlined,
   MessageOutlined,
   RightOutlined,
-} from '@ant-design/icons'
-import 'antd/dist/antd.css'
-import style from './App.module.css'
+} from "@ant-design/icons";
+import "antd/dist/antd.css";
+import style from "./App.module.css";
 
 const feedbacks = [
   {
@@ -52,53 +52,53 @@ const feedbacks = [
     author: "Бека",
     date: "11 августа 2021",
   },
-]
+];
 
 const App = () => {
-  const ref = useRef()
-  const [percent, setPercent] = useState(100 / feedbacks.length)
-  const [page, setPage] = useState(1)
+  const ref = useRef();
+  const [percent, setPercent] = useState(100 / feedbacks.length);
+  const [page, setPage] = useState(1);
 
   const increase = () => {
-    const initialLength = 100 / feedbacks.length
+    const initialLength = 100 / feedbacks.length;
     if (percent === 100) {
-      setPercent(initialLength)
-      setPage(1)
-      return
+      setPercent(initialLength);
+      setPage(1);
+      return;
     }
-    let newPercent = percent + initialLength
+    let newPercent = percent + initialLength;
     if (newPercent > 100) {
-      newPercent = 100
+      newPercent = 100;
     }
-    setPercent(newPercent)
-    setPage(page + 1)
-  }
+    setPercent(newPercent);
+    setPage(page + 1);
+  };
   const decline = () => {
-    const InitialLength = 100 / feedbacks.length
-    let newPercent = percent - InitialLength
-    setPage(page - 1)
+    const InitialLength = 100 / feedbacks.length;
+    let newPercent = percent - InitialLength;
+    setPage(page - 1);
     if (Math.ceil(newPercent) < InitialLength) {
-      newPercent = 100
-      setPage(feedbacks.length)
+      newPercent = 100;
+      setPage(feedbacks.length);
     }
-    setPercent(newPercent)
-  }
+    setPercent(newPercent);
+  };
 
   const prev = () => {
-    decline()
-    ref.current.prev()
-  }
+    decline();
+    ref.current.prev();
+  };
   const next = () => {
-    increase()
-    ref.current.next()
-  }
+    increase();
+    ref.current.next();
+  };
 
   const getFirstWord = (str) => {
     return str
       .split(" ")
       .map((item) => item.slice(0, 1).toUpperCase())
-      .join(" ")
-  }
+      .join(" ");
+  };
 
   return (
     <div className={style.root}>
@@ -137,7 +137,7 @@ const App = () => {
         </Carousel>
 
         <div className={style.cardFooter}>
-          <Progress percent={percent} showInfo={false} />
+          <Progress percent={percent} showInfo={false} />      
           <ButtonGroup className={style.buttonBox}>
             <Button type="link" onClick={prev} icon={<LeftOutlined />}></Button>
             <div className={style.paginationBox}>
@@ -154,6 +154,6 @@ const App = () => {
       </div>
     </div>
   );
-}
+};
 
-export default App
+export default App;
