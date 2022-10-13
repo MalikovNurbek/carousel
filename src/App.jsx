@@ -82,7 +82,6 @@ const App = () => {
       setPage(feedbacks.length)
     }
     setPercent(newPercent)
-
   }
 
   const prev = () => {
@@ -102,10 +101,8 @@ const App = () => {
   }
 
   return (
-    <div
-      className={cls.root}>
+    <div className={cls.root}>
       <div className={cls.card}>
-
         <div className={cls.cardHeader}>
           <div>Отзывы пользователей</div>
           <Button
@@ -120,21 +117,17 @@ const App = () => {
         <Carousel
           ref={ref}
           dots={true}
-          draggable
           dotPosition="bottom"
           nextArrow={<h1>12</h1>}
         >
           {feedbacks.map(({ id, description, date, author }) => (
             <div key={id}>
               <div className={cls.cardBody}>
-                <Avatar
-                  className={cls.cardAvatar}
-                  size={80}
-                >
+                <Avatar className={cls.cardAvatar} size={80}>
                   {getFirstWord(author)}
                 </Avatar>
                 <div className={cls.carouselContent}>
-                  <div >{date}</div>
+                  <div>{date}</div>
                   <div>{description}</div>
                   <div>{author}</div>
                 </div>
@@ -151,10 +144,13 @@ const App = () => {
               <b>{page}</b>
               <span>/ {feedbacks.length}</span>
             </div>
-            <Button type="link" onClick={next} icon={<RightOutlined />}></Button>
+            <Button
+              type="link"
+              onClick={next}
+              icon={<RightOutlined />}
+            ></Button>
           </ButtonGroup>
         </div>
-        
       </div>
     </div>
   )

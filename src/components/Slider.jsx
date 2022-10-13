@@ -6,7 +6,7 @@ const Slider = ({ percent, setPercent }) => {
 
   return (
     <>
-      <Progress percent={percent} showInfo={false} />
+      <Progress percent={percent} showInfo={false}/>
     </>
   );
 };
