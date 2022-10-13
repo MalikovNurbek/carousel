@@ -1,78 +1,78 @@
+import { useRef, useState } from 'react'
+import { Avatar, Button, Carousel, Progress } from 'antd'
+import ButtonGroup from 'antd/lib/button/button-group'
 import {
   LeftOutlined,
   MessageOutlined,
   RightOutlined,
 } from '@ant-design/icons'
-import { Avatar, Button, Carousel } from 'antd'
 import 'antd/dist/antd.css'
-import ButtonGroup from 'antd/lib/button/button-group'
-import { useRef, useState } from 'react'
-import cls from './App.module.css'
-import Slider from './components/Slider'
+import style from './App.module.css'
+
+const feedbacks = [
+  {
+    id: 0,
+    description:
+      "Пользуюсь программой уже три года. Все отлично работает, спасибо! 000",
+    author: "Костин Родион",
+    date: "11 августа 2021",
+  },
+  {
+    id: 1,
+    description:
+      "Пользуюсь программой уже три года. Все отлично работает, спасибо! 111",
+    author: "Мали",
+    date: "11 августа 2021",
+  },
+  {
+    id: 2,
+    description:
+      "Пользуюсь программой уже три года. Все отлично работает, спасибо! 222",
+    author: "Бека",
+    date: "11 августа 2021",
+  },
+  {
+    id: 3,
+    description:
+      "Пользуюсь программой уже три года. Все отлично работает, спасибо! 333",
+    author: "Бека",
+    date: "11 августа 2021",
+  },
+  {
+    id: 4,
+    description:
+      "Пользуюсь программой уже три года. Все отлично работает, спасибо! 444",
+    author: "Бека",
+    date: "11 августа 2021",
+  },
+  {
+    id: 5,
+    description:
+      "Пользуюсь программой уже три года. Все отлично работает, спасибо! 555",
+    author: "Бека",
+    date: "11 августа 2021",
+  },
+]
+
 const App = () => {
-  const feedbacks = [
-    {
-      id: 0,
-      description:
-        "Пользуюсь программой уже три года. Все отлично работает, спасибо! 000",
-      author: "Костин Родион",
-      date: "11 августа 2021",
-    },
-    {
-      id: 1,
-      description:
-        "Пользуюсь программой уже три года. Все отлично работает, спасибо! 111",
-      author: "Мали",
-      date: "11 августа 2021",
-    },
-    {
-      id: 2,
-      description:
-        "Пользуюсь программой уже три года. Все отлично работает, спасибо! 222",
-      author: "Бека",
-      date: "11 августа 2021",
-    },
-    {
-      id: 3,
-      description:
-        "Пользуюсь программой уже три года. Все отлично работает, спасибо! 333",
-      author: "Бека",
-      date: "11 августа 2021",
-    },
-    {
-      id: 4,
-      description:
-        "Пользуюсь программой уже три года. Все отлично работает, спасибо! 444",
-      author: "Бека",
-      date: "11 августа 2021",
-    },
-    {
-      id: 5,
-      description:
-        "Пользуюсь программой уже три года. Все отлично работает, спасибо! 555",
-      author: "Бека",
-      date: "11 августа 2021",
-    },
-  ]
   const ref = useRef()
   const [percent, setPercent] = useState(100 / feedbacks.length)
   const [page, setPage] = useState(1)
 
   const increase = () => {
-    const InitialLength = 100 / feedbacks.length
+    const initialLength = 100 / feedbacks.length
     if (percent === 100) {
-      setPercent(InitialLength)
+      setPercent(initialLength)
       setPage(1)
       return
     }
-    let newPercent = percent + InitialLength
+    let newPercent = percent + initialLength
     if (newPercent > 100) {
       newPercent = 100
     }
     setPercent(newPercent)
     setPage(page + 1)
   }
-
   const decline = () => {
     const InitialLength = 100 / feedbacks.length
     let newPercent = percent - InitialLength
@@ -101,12 +101,12 @@ const App = () => {
   }
 
   return (
-    <div className={cls.root}>
-      <div className={cls.card}>
-        <div className={cls.cardHeader}>
+    <div className={style.root}>
+      <div className={style.card}>
+        <div className={style.cardHeader}>
           <div>Отзывы пользователей</div>
           <Button
-            className={cls.headerButton}
+            className={style.headerButton}
             type="link"
             icon={<MessageOutlined />}
           >
@@ -122,11 +122,11 @@ const App = () => {
         >
           {feedbacks.map(({ id, description, date, author }) => (
             <div key={id}>
-              <div className={cls.cardBody}>
-                <Avatar className={cls.cardAvatar} size={80}>
+              <div className={style.cardBody}>
+                <Avatar className={style.cardAvatar} size={80}>
                   {getFirstWord(author)}
                 </Avatar>
-                <div className={cls.carouselContent}>
+                <div className={style.carouselContent}>
                   <div>{date}</div>
                   <div>{description}</div>
                   <div>{author}</div>
@@ -136,11 +136,11 @@ const App = () => {
           ))}
         </Carousel>
 
-        <div className={cls.cardFooter}>
-          <Slider percent={percent} setPercent={setPercent} />
-          <ButtonGroup className={cls.buttonBox}>
+        <div className={style.cardFooter}>
+          <Progress percent={percent} showInfo={false} />
+          <ButtonGroup className={style.buttonBox}>
             <Button type="link" onClick={prev} icon={<LeftOutlined />}></Button>
-            <div className={cls.paginationBox}>
+            <div className={style.paginationBox}>
               <b>{page}</b>
               <span>/ {feedbacks.length}</span>
             </div>
@@ -153,7 +153,7 @@ const App = () => {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 export default App
